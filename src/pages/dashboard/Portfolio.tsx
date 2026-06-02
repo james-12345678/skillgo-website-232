@@ -1167,12 +1167,7 @@ const Portfolio = () => {
   };
 
   const handleReportAction = (project: any) => {
-    if (hasAcceptedPaymentCode(project)) {
-      void handleViewReport(project);
-      return;
-    }
-
-    openReportCodeDialog(project);
+    void handleViewReport(project);
   };
 
   const handleGenerateForensicReport = async (project: any) => {
@@ -1397,62 +1392,6 @@ const Portfolio = () => {
         <BackButton fallbackPath="/forensic-app" />
       </div>
       <Tabs value={currentTab} onValueChange={setCurrentTab} className="w-full">
-        <Dialog
-          open={reportCodeDialogOpen}
-          onOpenChange={(open) => {
-            setReportCodeDialogOpen(open);
-            if (!open) {
-              setPendingReportProject(null);
-              setReportCodeInput("");
-              setReportCodeError("");
-              setReportCodeVerified(false);
-            }
-          }}
-        >
-          <DialogContent className="sm:max-w-md">
-            <DialogHeader>
-              <DialogTitle>Payment code</DialogTitle>
-            </DialogHeader>
-
-            <div className="space-y-4 pt-2">
-              <div className="space-y-2">
-                <Textarea
-                  id="payment-code"
-                  value={reportCodeInput}
-                  onChange={(e) => {
-                    setReportCodeInput(e.target.value);
-                    if (reportCodeError) setReportCodeError("");
-                    if (reportCodeVerified) setReportCodeVerified(false);
-                  }}
-                  rows={1}
-                  placeholder="Enter here"
-                  className="mx-auto w-full max-w-[11rem] min-h-[44px] resize-none text-center font-mono tracking-widest"
-                />
-                {reportCodeError && <p className="text-xs font-semibold text-red-600">{reportCodeError}</p>}
-                {reportCodeVerified && <p className="text-xs font-semibold text-emerald-600">Code accepted</p>}
-              </div>
-
-              <div className="flex justify-end gap-2">
-                <Button
-                  type="button"
-                  variant="outline"
-                  onClick={() => setReportCodeDialogOpen(false)}
-                >
-                  Cancel
-                </Button>
-                {!reportCodeVerified ? (
-                  <Button type="button" onClick={handleVerifyReportCode} disabled={isLoadingReport}>
-                    {isLoadingReport ? "Verifying..." : "Verify"}
-                  </Button>
-                ) : (
-                  <Button type="button" onClick={() => void handleReportCodeSubmit()}>
-                    my verified skills
-                  </Button>
-                )}
-              </div>
-            </div>
-          </DialogContent>
-        </Dialog>
         <div className="space-y-2">
           {/* Filter and Project List Area */}
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-slate-100 pb-4">
@@ -1536,6 +1475,18 @@ const Portfolio = () => {
                 <p className="text-slate-400 text-sm max-w-xs mx-auto">
                   {searchName ? `No projects found matching "${searchName}".` : "Start your journey by adding your first project in the Workbench."}
                 </p>
+                {currentPage > 1 && (
+                  <div className="mt-4">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={goToPreviousProject}
+                      className="h-10 sm:h-9 px-4 sm:px-4 rounded-lg sm:rounded-xl text-sm sm:text-sm font-bold text-slate-700 hover:text-logo-gold hover:border-logo-gold border-2 transition-all mx-auto"
+                    >
+                      ← Previous Page
+                    </Button>
+                  </div>
+                )}
               </div>
             ) : (
               <div className="space-y-0">
