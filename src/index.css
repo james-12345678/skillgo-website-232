@@ -1,0 +1,391 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /**
+   * SkillGo Logo-Inspired Color System
+   * Gold and Blue gradients matching the brand identity
+   */
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 220 39% 8%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 39% 8%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 39% 8%;
+
+    --primary: 220 60% 28%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 220 39% 8%;
+
+    --muted: 210 40% 96%;
+    --muted-foreground: 220 20% 30%;
+
+    --accent: 200 100% 85%;
+    --accent-foreground: 220 39% 8%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 43 100% 53%;
+
+    --radius: 0.75rem;
+
+    /* Skillgo Logo Colors - Navy Blue & Gold */
+    --logo-gold: 43 100% 62%;
+    --logo-blue: 220 80% 32%;
+    --gradient-start: 43 100% 62%;
+    --gradient-end: 220 80% 32%;
+    --neural-blue: 220 80% 32%;
+    --electric-gold: 43 100% 62%;
+    --cyber-blue: 220 80% 42%;
+    --ai-accent: 43 100% 58%;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 100% 27%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 240 5.9% 90%;
+    --sidebar-ring: 240 100% 27%;
+  }
+
+  .dark {
+    --background: 210 20% 8%;
+    --foreground: 0 0% 95%;
+
+    --card: 210 20% 8%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 210 20% 8%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 220 80% 40%;
+    --primary-foreground: 210 20% 8%;
+
+    --secondary: 210 15% 15%;
+    --secondary-foreground: 0 0% 95%;
+
+    --muted: 210 15% 15%;
+    --muted-foreground: 210 10% 55%;
+
+    --accent: 210 15% 15%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 210 15% 15%;
+    --input: 210 15% 15%;
+    --ring: 43 100% 58%;
+
+    /* Dark mode logo colors - Navy Blue & Gold */
+    --logo-gold: 43 100% 65%;
+    --logo-blue: 220 80% 38%;
+    --gradient-start: 43 100% 65%;
+    --gradient-end: 220 80% 38%;
+    --neural-blue: 220 80% 38%;
+    --electric-gold: 43 100% 65%;
+    --cyber-blue: 220 80% 48%;
+    --ai-accent: 43 100% 60%;
+
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 268 100% 70%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 268 100% 70%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    /* Fix for mobile viewport and scrolling */
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  body {
+    background-image: url('https://cdn.builder.io/api/v1/image/assets%2Facfeb08989de4712853ea6e8ba93bba3%2F60b0f23255854a7bad2c71cf337a30ed?format=webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    @apply text-foreground font-poppins;
+    font-size: 16px;
+    line-height: 1.5;
+    font-weight: 400;
+  }
+
+  div.min-h-screen.bg-background,
+  div.min-h-svh.bg-background,
+  div.min-h-dvh.bg-background {
+    background-color: transparent !important;
+  }
+
+  /* Fix for mobile browsers address bar behavior */
+  #root {
+    min-height: 100vh;
+    min-height: 100dvh; /* Use dynamic viewport height when supported */
+    position: relative;
+  }
+
+  /* Ensure header container scales properly */
+  .header-container {
+    max-width: 1920px;
+    margin: 0 auto;
+  }
+
+  /* Logo responsive behavior */
+  .responsive-logo {
+    transition: opacity 0.15s ease;
+    object-fit: contain;
+    will-change: opacity;
+  }
+
+  /* Mobile-first responsive dashboard improvements */
+  @media (max-width: 640px) {
+    /* Improve touch targets on mobile */
+    .mobile-touch-target {
+      min-height: 44px;
+      min-width: 44px;
+    }
+
+    /* Better scrolling on mobile */
+    .mobile-scroll {
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .mobile-scroll::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  /* Ensure content doesn't overflow horizontally */
+  .dashboard-container {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
+  /* Mobile scroll utilities */
+  .mobile-scroll-safe {
+    padding-bottom: env(safe-area-inset-bottom, 1rem);
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    .mobile-scroll-safe {
+      padding-bottom: calc(env(safe-area-inset-bottom, 1rem) + 3rem);
+      margin-bottom: 3rem;
+    }
+  }
+
+  /* Ensure touch scrolling works properly on iOS */
+  .touch-scroll {
+    -webkit-overflow-scrolling: touch;
+    overflow-y: auto;
+  }
+
+  h1 {
+    @apply font-poppins font-semibold text-2xl text-foreground leading-tight;
+  }
+  h2 {
+    @apply font-poppins font-semibold text-xl text-foreground leading-snug;
+  }
+  h3 {
+    @apply font-poppins font-semibold text-lg text-foreground leading-snug;
+  }
+  p {
+    @apply font-poppins text-sm text-muted-foreground leading-relaxed;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Performance optimizations */
+  * {
+    box-sizing: border-box;
+  }
+
+  /* Enable hardware acceleration for transforms */
+  .hw-accel {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+
+  /* Optimize transitions to use GPU acceleration */
+  button,
+  a,
+  [role="button"] {
+    transform: translateZ(0);
+    will-change: opacity, background-color;
+  }
+
+  /* Reduce paint operations */
+  img {
+    image-rendering: -webkit-optimize-contrast;
+    backface-visibility: hidden;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-muted;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground/30 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted-foreground/50;
+  }
+}
+
+@layer utilities {
+  /* Disable copy-paste for objectives and skill tasks */
+  .no-copy {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-touch-callout: none;
+  }
+
+  /* Gradient text utilities */
+  .gradient-text {
+    @apply bg-gradient-to-r from-gradient-start to-gradient-end bg-clip-text text-transparent;
+  }
+
+  .gradient-border {
+    background:
+      linear-gradient(white, white) padding-box,
+      linear-gradient(
+          45deg,
+          hsl(var(--gradient-start)),
+          hsl(var(--gradient-end))
+        )
+        border-box;
+    border: 2px solid transparent;
+  }
+
+  /* Animation utilities */
+  .animate-fade-in {
+    animation: fadeIn 0.2s ease-in-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.3s ease-out;
+  }
+
+  .animate-marquee {
+    animation: marquee 25s linear infinite;
+  }
+
+  /* Pause marquee animation on mobile for better performance */
+  @media (max-width: 1024px) {
+    .animate-marquee {
+      animation-play-state: paused;
+    }
+  }
+
+  /* Reduce motion for users who prefer it */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-marquee {
+      animation-play-state: paused;
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes marquee-features {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  @keyframes marquee-mobile {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-100% + 100vw));
+    }
+  }
+
+  .animate-marquee-features {
+    animation: marquee-features 15s linear infinite;
+  }
+
+  /* Mobile marquee animation - slower and touch-friendly */
+  .animate-marquee-mobile {
+    animation: marquee-mobile 25s linear infinite;
+  }
+
+  /* Pause mobile marquee on touch/hover for better UX */
+  .animate-marquee-mobile:hover {
+    animation-play-state: paused;
+  }
+
+  /* Ensure mobile marquee respects reduced motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-marquee-mobile {
+      animation-play-state: paused;
+    }
+  }
+}

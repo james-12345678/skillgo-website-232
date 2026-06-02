@@ -1,0 +1,27 @@
+[build]
+  command = 'npm run build'
+  publish = 'dist'
+  functions = 'netlify/functions'
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Permissions-Policy = "clipboard-read=*, clipboard-write=*"
+
+# Default proxy for all API calls
+[[redirects]]
+  from = "/api/*"
+  to = "https://skillgo.africa/staging/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/marketing"
+  to = "/home"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

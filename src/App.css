@@ -1,0 +1,65 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+/* Toast blink animation */
+@keyframes toast-blink {
+  0% { opacity: 1; transform: translateY(0); }
+  25% { opacity: 0.2; transform: translateY(-2px); }
+  50% { opacity: 1; transform: translateY(0); }
+  75% { opacity: 0.2; transform: translateY(-2px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.toast-blink {
+  animation: toast-blink 1s ease-in-out 0s 3;
+}
+
+/* CV Data Notice Blink Animation */
+@keyframes cv-notice-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.cv-notice-blink {
+  animation: cv-notice-blink 1.2s ease-in-out infinite;
+}
